@@ -1,0 +1,45 @@
+---
+import clsx from 'clsx';
+
+interface Props {
+  as?: 'a' | 'button';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const {
+  as = 'a',
+  href,
+  type = 'button',
+  variant = 'primary',
+  size = 'md',
+  class: className,
+  ...rest
+} = Astro.props as Props;
+
+const Tag = as;
+
+const classes = clsx(
+  'inline-flex items-center justify-center rounded-full font-semibold transition duration-150',
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/45',
+  'disabled:cursor-not-allowed disabled:opacity-60',
+  variant === 'primary' && 'bg-accent text-white hover:bg-sky-500 shadow-soft',
+  variant === 'secondary' && 'border border-accent/30 bg-white text-ink hover:border-accent hover:text-accent',
+  variant === 'ghost' && 'text-muted hover:bg-white/90 hover:text-ink',
+  size === 'md' && 'px-5 py-2.5 text-sm md:px-6 md:py-3 md:text-base',
+  size === 'sm' && 'px-4 py-2 text-sm',
+  className
+);
+---
+
+<Tag
+  class={classes}
+  href={as === 'a' ? href : undefined}
+  type={as === 'button' ? type : undefined}
+  {...rest}
+>
+  <slot />
+</Tag>

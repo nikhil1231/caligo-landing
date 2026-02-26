@@ -1,0 +1,24 @@
+---
+import { withBasePath } from '../../lib/site';
+
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+const { src, alt, caption } = Astro.props as Props;
+---
+
+<figure class="mx-auto flex max-w-[230px] flex-col items-center gap-3">
+  <div class="surface-card relative w-full overflow-hidden rounded-[2rem] border-8 border-slate-900 p-2">
+    <img
+      src={withBasePath(src)}
+      alt={alt}
+      loading="lazy"
+      class="h-[420px] w-full rounded-[1.4rem] object-cover"
+    />
+    <div class="pointer-events-none absolute left-1/2 top-0 h-5 w-24 -translate-x-1/2 rounded-b-2xl bg-slate-900"></div>
+  </div>
+  <figcaption class="text-sm font-medium text-muted">{caption}</figcaption>
+</figure>

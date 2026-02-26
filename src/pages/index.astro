@@ -1,0 +1,60 @@
+---
+import Footer from '../components/layout/Footer.astro';
+import Header from '../components/layout/Header.astro';
+import FaqSection from '../components/sections/FaqSection.astro';
+import FeaturesSection from '../components/sections/FeaturesSection.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import HowItWorksSection from '../components/sections/HowItWorksSection.astro';
+import ScreenshotsSection from '../components/sections/ScreenshotsSection.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
+import TrustSection from '../components/sections/TrustSection.astro';
+import WaitlistSection from '../components/sections/WaitlistSection.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import { absoluteUrl } from '../lib/site';
+
+const description =
+  'Caligo Tracker is an ultra low-friction calorie and exercise logger with swipe logging, dial-based weight entry, and adaptive target calibration from trends.';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Caligo Tracker',
+    url: absoluteUrl('/'),
+    description
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Caligo Tracker',
+    operatingSystem: 'iOS',
+    applicationCategory: 'HealthApplication',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD'
+    },
+    url: absoluteUrl('/'),
+    description,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Caligo Tracker'
+    }
+  }
+];
+---
+
+<MainLayout description={description} path="/" jsonLd={jsonLd}>
+  <Header />
+  <main>
+    <HeroSection />
+    <HowItWorksSection />
+    <FeaturesSection />
+    <TrustSection />
+    <ScreenshotsSection />
+    <TestimonialsSection />
+    <FaqSection />
+    <WaitlistSection />
+  </main>
+  <Footer />
+</MainLayout>

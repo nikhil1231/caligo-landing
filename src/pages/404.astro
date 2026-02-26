@@ -1,0 +1,27 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { withBasePath } from '../lib/site';
+---
+
+<MainLayout
+  title="Page Not Found"
+  description="The page you requested could not be found."
+  path="/404"
+  noIndex={true}
+>
+  <main class="section-grid flex min-h-[70vh] items-center justify-center py-16">
+    <section class="surface-card w-full max-w-xl space-y-5 p-8 text-center md:p-12">
+      <p class="eyebrow">404</p>
+      <h1 class="text-3xl font-extrabold md:text-4xl">This page took a wrong turn.</h1>
+      <p class="text-sm leading-relaxed text-muted md:text-base">
+        The link may be old or the page was moved.
+      </p>
+      <a
+        href={withBasePath('/')}
+        class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-500"
+      >
+        Back to home
+      </a>
+    </section>
+  </main>
+</MainLayout>

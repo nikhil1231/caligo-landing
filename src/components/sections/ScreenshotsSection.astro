@@ -1,0 +1,19 @@
+---
+import { screenshotCards } from '../../content/copy';
+import DeviceFrame from '../ui/DeviceFrame.astro';
+import SectionShell from '../ui/SectionShell.astro';
+---
+
+<SectionShell
+  eyebrow="Screenshots"
+  title="A calm interface for daily consistency"
+  lead="Use these placeholders for now, then replace with your real app captures later."
+>
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      screenshotCards.map((item) => (
+        <DeviceFrame src={item.src} alt={item.alt} caption={item.caption} />
+      ))
+    }
+  </div>
+</SectionShell>

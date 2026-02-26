@@ -1,0 +1,56 @@
+---
+import { waitlistCopy } from '../../content/copy';
+import { withBasePath } from '../../lib/site';
+---
+
+<section id="waitlist" class="py-14 md:py-20">
+  <div class="section-grid">
+    <div class="surface-card mx-auto max-w-2xl p-6 md:p-8">
+      <p class="eyebrow mb-2">Stay in the loop</p>
+      <h2 class="text-2xl font-extrabold md:text-3xl">{waitlistCopy.title}</h2>
+      <p class="mt-3 text-sm text-muted md:text-base">{waitlistCopy.lead}</p>
+
+      <form class="mt-6 space-y-4" data-lead-form data-source="waitlist" novalidate>
+        <div>
+          <label for="waitlist-email" class="mb-2 block text-sm font-semibold">{waitlistCopy.emailLabel}</label>
+          <input
+            id="waitlist-email"
+            name="email"
+            type="email"
+            required
+            autocomplete="email"
+            placeholder={waitlistCopy.emailPlaceholder}
+            class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-accent/25 transition placeholder:text-slate-400 focus:border-accent focus:ring md:text-base"
+          />
+        </div>
+
+        <div class="hidden" aria-hidden="true">
+          <label for="company-name">Company</label>
+          <input id="company-name" name="company" type="text" autocomplete="off" tabindex="-1" />
+        </div>
+
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {waitlistCopy.cta}
+        </button>
+
+        <p class="text-xs text-muted">
+          {waitlistCopy.privacyNote}
+          <a href={withBasePath('/privacy')} class="font-semibold text-accent hover:text-sky-500">Privacy Policy</a>
+          and
+          <a href={withBasePath('/terms')} class="font-semibold text-accent hover:text-sky-500">Terms</a>.
+        </p>
+
+        <p data-form-status class="text-sm text-muted" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initLeadForms } from '../../scripts/forms';
+
+  initLeadForms();
+</script>

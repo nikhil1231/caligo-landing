@@ -1,0 +1,28 @@
+---
+import { heroCopy } from '../../content/copy';
+import { homeSectionLink, withBasePath } from '../../lib/site';
+import Button from '../ui/Button.astro';
+---
+
+<section class="relative overflow-hidden pb-14 pt-14 md:pb-20 md:pt-20">
+  <div class="soft-blob -left-24 top-6 h-56 w-56 bg-accent/25"></div>
+  <div class="soft-blob -right-16 top-14 h-72 w-72 bg-sky-300/28"></div>
+
+  <div class="section-grid">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="eyebrow mb-5">Ultra low-friction tracking</p>
+      <h1 class="text-balance text-4xl font-extrabold leading-tight md:text-6xl">{heroCopy.headline}</h1>
+      <p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-muted md:text-xl">{heroCopy.subtext}</p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 md:mt-10">
+        <Button as="a" href={homeSectionLink('#waitlist')}>
+          Join the waitlist
+          <i data-lucide="arrow-right" class="ml-2"></i>
+        </Button>
+        <Button as="a" href={withBasePath('/contact')} variant="secondary">
+          Get TestFlight link
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

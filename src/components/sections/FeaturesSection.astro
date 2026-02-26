@@ -1,0 +1,20 @@
+---
+import { features } from '../../content/copy';
+import FeatureCard from '../ui/FeatureCard.astro';
+import SectionShell from '../ui/SectionShell.astro';
+---
+
+<SectionShell
+  id="features"
+  eyebrow="Why it is different"
+  title="Simple on the surface, smart underneath"
+  lead="Caligo keeps the interface light while adapting your targets from real trend behavior."
+>
+  <div class="grid gap-4 md:grid-cols-2 md:gap-6">
+    {
+      features.map((feature) => (
+        <FeatureCard icon={feature.icon} title={feature.title} body={feature.body} />
+      ))
+    }
+  </div>
+</SectionShell>

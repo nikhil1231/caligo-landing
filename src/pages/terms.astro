@@ -1,0 +1,82 @@
+---
+import Footer from '../components/layout/Footer.astro';
+import Header from '../components/layout/Header.astro';
+import MainLayout from '../layouts/MainLayout.astro';
+
+const description = 'Terms of Service for Caligo Tracker.';
+const updatedAt = 'February 26, 2026';
+---
+
+<MainLayout title="Terms of Service" description={description} path="/terms">
+  <Header />
+  <main class="section-grid py-14 md:py-20">
+    <article class="surface-card mx-auto max-w-3xl space-y-6 p-6 md:p-10">
+      <header class="space-y-3">
+        <p class="eyebrow">Legal</p>
+        <h1 class="text-3xl font-extrabold md:text-4xl">Terms of Service</h1>
+        <p class="text-sm text-muted">Last updated: {updatedAt}</p>
+      </header>
+
+      <p class="text-sm leading-relaxed text-muted md:text-base">
+        These Terms govern your use of Caligo Tracker. By using the site or app, you agree to these Terms.
+      </p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold">Informational use only</h2>
+        <p class="text-sm leading-relaxed text-muted md:text-base">
+          Caligo Tracker is provided for informational and self-tracking purposes only. It is not medical advice and should
+          not be used for diagnosis or treatment.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold">User responsibility</h2>
+        <p class="text-sm leading-relaxed text-muted md:text-base">
+          You are responsible for how you use the app, the data you enter, and decisions made from that information.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold">Acceptable use</h2>
+        <p class="text-sm leading-relaxed text-muted md:text-base">
+          You agree not to misuse the service, disrupt access, attempt unauthorized access, or use the product for unlawful
+          purposes.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold">Liability limitations</h2>
+        <p class="text-sm leading-relaxed text-muted md:text-base">
+          To the fullest extent permitted by law, Caligo Tracker is provided "as is" without warranties. We are not liable
+          for indirect or consequential damages related to use of the service.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold">Termination</h2>
+        <p class="text-sm leading-relaxed text-muted md:text-base">
+          We may suspend or terminate access if these Terms are violated or if the service is discontinued.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold">Contact</h2>
+        <p class="text-sm leading-relaxed text-muted md:text-base">
+          Questions about these Terms can be sent to
+          <a class="font-semibold text-accent hover:text-sky-500" href="mailto:hello@caligotracker.com">
+            hello@caligotracker.com
+          </a>
+          .
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold">Changes to terms</h2>
+        <p class="text-sm leading-relaxed text-muted md:text-base">
+          These Terms may change over time. Continued use after updates means you accept the revised Terms.
+        </p>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</MainLayout>

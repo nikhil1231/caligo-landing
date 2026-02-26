@@ -1,0 +1,34 @@
+---
+import { footerCopy } from '../../content/copy';
+import { CONTACT_EMAIL, withBasePath } from '../../lib/site';
+---
+
+<footer class="mt-16 border-t border-white/60 bg-white/70 py-10 md:mt-20">
+  <div class="section-grid space-y-8">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <p class="text-sm text-muted">{footerCopy.legalNotice}</p>
+      <a class="text-sm font-semibold text-accent hover:text-sky-500" href={`mailto:${CONTACT_EMAIL}`}>
+        {CONTACT_EMAIL}
+      </a>
+    </div>
+
+    <div class="flex flex-col gap-4 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-wrap items-center gap-4">
+        <a href={withBasePath('/privacy')} class="hover:text-ink">Privacy</a>
+        <a href={withBasePath('/terms')} class="hover:text-ink">Terms</a>
+        <a href={withBasePath('/contact')} class="hover:text-ink">Contact</a>
+      </div>
+      <div class="flex items-center gap-4">
+        {
+          footerCopy.socialLinks.map((link) => (
+            <a href={link.href} rel="noopener noreferrer" target="_blank" class="hover:text-ink">
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <p class="text-xs text-muted">© {new Date().getFullYear()} Caligo Tracker. All rights reserved.</p>
+  </div>
+</footer>
