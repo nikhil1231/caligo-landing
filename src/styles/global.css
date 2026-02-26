@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-shell: #f6fbff;
+  --bg-soft: #eef7fd;
+  --ink: #10212b;
+  --muted: #557180;
+  --accent: #03a9f4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: Manrope, system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 8% -5%, rgba(3, 169, 244, 0.14), transparent 40%),
+    radial-gradient(circle at 92% 0%, rgba(3, 169, 244, 0.1), transparent 36%),
+    linear-gradient(180deg, #f9fdff 0%, #f6fbff 48%, #f2f8fd 100%);
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(3, 169, 244, 0.22);
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-card border border-white/80 bg-white/85 shadow-soft backdrop-blur;
+  }
+
+  .section-grid {
+    @apply mx-auto w-full max-w-6xl px-4 md:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.16em] text-accent;
+  }
+
+  .muted {
+    @apply text-sm text-muted md:text-base;
+  }
+
+  .soft-blob {
+    position: absolute;
+    z-index: -1;
+    border-radius: 9999px;
+    filter: blur(52px);
+    pointer-events: none;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid rgba(3, 169, 244, 0.36);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
