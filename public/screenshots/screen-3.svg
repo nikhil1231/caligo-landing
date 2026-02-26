@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 844" role="img" aria-label="Trend chart placeholder">
+  <rect width="390" height="844" fill="#f7fcff" />
+  <rect x="34" y="74" width="322" height="560" rx="30" fill="#ffffff" stroke="#d8edf9" />
+  <path d="M70 518 C120 470 145 500 188 436 C220 388 255 420 318 346" fill="none" stroke="#03a9f4" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="70" cy="518" r="8" fill="#03a9f4"/>
+  <circle cx="188" cy="436" r="8" fill="#03a9f4"/>
+  <circle cx="318" cy="346" r="8" fill="#03a9f4"/>
+  <text x="60" y="140" fill="#0f2430" font-size="24" font-family="Manrope, sans-serif" font-weight="700">Trend Calibration</text>
+  <text x="60" y="177" fill="#557180" font-size="18" font-family="Manrope, sans-serif">Day 9 of 14</text>
+  <rect x="50" y="680" width="290" height="80" rx="30" fill="#03a9f41a" />
+  <text x="98" y="728" fill="#03a9f4" font-size="24" font-family="Manrope, sans-serif" font-weight="700">Target adjusting...</text>
+</svg>

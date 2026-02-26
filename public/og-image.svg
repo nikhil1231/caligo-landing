@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Caligo Tracker Open Graph image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fdff" />
+      <stop offset="100%" stop-color="#e4f6ff" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="180" cy="110" r="120" fill="#03a9f433" />
+  <circle cx="1030" cy="80" r="140" fill="#03a9f422" />
+  <rect x="100" y="130" width="1000" height="370" rx="48" fill="#ffffff" stroke="#d9edf9" />
+  <text x="160" y="265" fill="#10212b" font-family="Manrope, sans-serif" font-size="74" font-weight="800">Caligo Tracker</text>
+  <text x="160" y="340" fill="#40606f" font-family="Manrope, sans-serif" font-size="40" font-weight="500">Track in seconds. Calibrate over time.</text>
+  <text x="160" y="420" fill="#03a9f4" font-family="Manrope, sans-serif" font-size="32" font-weight="700">Ultra low-friction calorie and exercise logging</text>
+</svg>
