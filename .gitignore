@@ -5,3 +5,8 @@ dist
 .env
 .env.*
 !.env.example
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
