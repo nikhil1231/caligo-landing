@@ -25,12 +25,37 @@ import Button from '../ui/Button.astro';
     </nav>
 
     <div class="flex items-center gap-2 md:gap-3">
-      <Button as="a" href={withBasePath('/contact')} variant="secondary" size="sm" class="hidden sm:inline-flex">
-        Get TestFlight link
-      </Button>
-      <Button as="a" href={homeSectionLink('#waitlist')} size="sm">
-        Join the waitlist
-      </Button>
+      <div id="header-cta-wrapper" class="opacity-0 pointer-events-none transition-opacity duration-300">
+        <Button as="a" href={homeSectionLink('#waitlist')} size="sm">
+          Get Early Access
+        </Button>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  function setupHeaderScroll() {
+    const wrapper = document.getElementById('header-cta-wrapper');
+    if (!wrapper) return;
+
+    const handleScroll = () => {
+      // Show the button when scrolled down by 150px
+      if (window.scrollY > 150) {
+        wrapper.classList.remove('opacity-0', 'pointer-events-none');
+      } else {
+        wrapper.classList.add('opacity-0', 'pointer-events-none');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Set initial state
+    handleScroll();
+  }
+
+  // Setup on initial load
+  setupHeaderScroll();
+
+  // Support Astro View Transitions if enabled
+  document.addEventListener('astro:page-load', setupHeaderScroll);
+</script>

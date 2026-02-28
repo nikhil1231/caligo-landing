@@ -13,7 +13,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/sitemap": "3.1.6",
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^4.16.18",
     "clsx": "^2.1.1",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@types/toastify-js": "^1.12.4",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "astro-eslint-parser": "^1.0.3",
