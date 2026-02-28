@@ -165,12 +165,12 @@ export const faqItems: FaqItem[] = [
 ];
 
 export const waitlistCopy = {
-  title: 'Join the waitlist',
-  lead: 'Get launch updates and TestFlight invites when available.',
+  title: 'Start Tracking',
+  lead: 'Get an instant invite to the TestFlight beta',
   emailLabel: 'Email address',
   emailPlaceholder: 'you@example.com',
-  cta: 'Join waitlist',
-  privacyNote: 'By submitting, you agree to our Privacy Policy and Terms.'
+  cta: 'Send Invite',
+  privacyNote: 'By submitting, you agree to our '
 } as const;
 
 export const footerCopy = {

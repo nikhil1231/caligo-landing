@@ -65,14 +65,19 @@ function runCooldown(button: HTMLButtonElement | null, source: LeadSource, ms: n
   }, 250);
 }
 
-function bindForm(form: HTMLFormElement) {
-  if (form.dataset.bound === 'true') {
-    return;
-  }
+let isBound = false;
 
-  form.dataset.bound = 'true';
+export function initLeadForms() {
+  if (isBound) return;
+  if (typeof document === 'undefined') return;
+  isBound = true;
 
-  form.addEventListener('submit', async (event) => {
+  document.addEventListener('submit', async (event) => {
+    const form = event.target as HTMLFormElement;
+    if (!form || !form.matches('[data-lead-form]')) {
+      return;
+    }
+
     event.preventDefault();
 
     const source = (form.dataset.source === 'contact' ? 'contact' : 'waitlist') as LeadSource;
@@ -87,8 +92,6 @@ function bindForm(form: HTMLFormElement) {
     if (!isValidEmail(email)) {
       const message = 'Please enter a valid email address.';
       setStatus(status, message);
-      showToast(message, 'error');
-      emailInput?.focus();
       return;
     }
 
@@ -106,7 +109,6 @@ function bindForm(form: HTMLFormElement) {
 
     if (!result.ok) {
       setStatus(status, result.message);
-      showToast(result.message, 'error');
 
       if (result.retryAfterMs) {
         setStatus(status, COOLDOWN_MESSAGES[source]);
@@ -117,12 +119,22 @@ function bindForm(form: HTMLFormElement) {
     }
 
     form.reset();
+
+    if (source === 'waitlist') {
+      const formContainer = document.getElementById('waitlist-form-container');
+      const successContainer = document.getElementById('waitlist-success');
+      const emailSpan = document.getElementById('success-email');
+
+      if (formContainer && successContainer && emailSpan) {
+        emailSpan.textContent = email;
+        formContainer.classList.add('hidden');
+        successContainer.classList.remove('hidden');
+        successContainer.classList.add('flex');
+        return;
+      }
+    }
+
     setStatus(status, result.message);
     showToast(result.message, 'success');
   });
-}
-
-export function initLeadForms(root: ParentNode = document) {
-  const forms = root.querySelectorAll<HTMLFormElement>('[data-lead-form]');
-  forms.forEach(bindForm);
 }

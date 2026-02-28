@@ -6,45 +6,59 @@ import { withBasePath } from '../../lib/site';
 <section id="waitlist" class="py-14 md:py-20">
   <div class="section-grid">
     <div class="surface-card mx-auto max-w-2xl p-6 md:p-8">
-      <p class="eyebrow mb-2">Stay in the loop</p>
-      <h2 class="text-2xl font-extrabold md:text-3xl">{waitlistCopy.title}</h2>
-      <p class="mt-3 text-sm text-muted md:text-base">{waitlistCopy.lead}</p>
+      <div id="waitlist-form-container">
+        <p class="eyebrow mb-2">Stay in the loop</p>
+        <h2 class="text-2xl font-extrabold md:text-3xl">{waitlistCopy.title}</h2>
+        <p class="mt-3 text-sm text-muted md:text-base">{waitlistCopy.lead}</p>
 
-      <form class="mt-6 space-y-4" data-lead-form data-source="waitlist" novalidate>
-        <div>
-          <label for="waitlist-email" class="mb-2 block text-sm font-semibold">{waitlistCopy.emailLabel}</label>
-          <input
-            id="waitlist-email"
-            name="email"
-            type="email"
-            required
-            autocomplete="email"
-            placeholder={waitlistCopy.emailPlaceholder}
-            class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-accent/25 transition placeholder:text-slate-400 focus:border-accent focus:ring md:text-base"
-          />
+        <form class="mt-6 space-y-4" data-lead-form data-source="waitlist" novalidate>
+          <div>
+            <label for="waitlist-email" class="mb-2 block text-sm font-semibold">{waitlistCopy.emailLabel}</label>
+            <input
+              id="waitlist-email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder={waitlistCopy.emailPlaceholder}
+              class="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none ring-accent/25 transition placeholder:text-slate-400 focus:border-accent focus:ring md:text-base"
+            />
+          </div>
+
+          <div class="hidden" aria-hidden="true">
+            <label for="company-name">Company</label>
+            <input id="company-name" name="company" type="text" autocomplete="off" tabindex="-1" />
+          </div>
+
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {waitlistCopy.cta}
+          </button>
+
+          <p class="text-xs text-muted">
+            {waitlistCopy.privacyNote}
+            <a href={withBasePath('/privacy')} class="font-semibold text-accent hover:text-sky-500">Privacy Policy</a>
+            and
+            <a href={withBasePath('/terms')} class="font-semibold text-accent hover:text-sky-500">Terms</a>.
+          </p>
+
+          <p data-form-status class="text-sm font-medium text-red-500" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <div id="waitlist-success" class="hidden flex-col items-center justify-center py-6 text-center text-slate-900 md:py-8">
+        <div class="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-full bg-sky-100 text-sky-500">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
         </div>
-
-        <div class="hidden" aria-hidden="true">
-          <label for="company-name">Company</label>
-          <input id="company-name" name="company" type="text" autocomplete="off" tabindex="-1" />
-        </div>
-
-        <button
-          type="submit"
-          class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {waitlistCopy.cta}
-        </button>
-
-        <p class="text-xs text-muted">
-          {waitlistCopy.privacyNote}
-          <a href={withBasePath('/privacy')} class="font-semibold text-accent hover:text-sky-500">Privacy Policy</a>
-          and
-          <a href={withBasePath('/terms')} class="font-semibold text-accent hover:text-sky-500">Terms</a>.
+        <h3 class="mb-3 text-2xl font-extrabold md:text-3xl">Check your inbox!</h3>
+        <p class="mx-auto max-w-md text-base text-muted md:text-lg">
+          We've sent your TestFlight invitation to <span id="success-email" class="font-bold text-slate-900"></span>. Open it on your iPhone to start tracking.
         </p>
-
-        <p data-form-status class="text-sm text-muted" aria-live="polite"></p>
-      </form>
+      </div>
     </div>
   </div>
 </section>
