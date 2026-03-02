@@ -17,6 +17,7 @@
     "@astrojs/tailwind": "^5.1.4",
     "astro": "^4.16.18",
     "clsx": "^2.1.1",
+    "firebase": "^12.10.0",
     "lucide": "^0.468.0",
     "playwright": "^1.58.2",
     "toastify-js": "^1.12.0"
@@ -35,5 +36,18 @@
     "prettier-plugin-astro": "^0.14.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.2"
-  }
+  },
+  "description": "Static marketing site for **Caligo Tracker**, an ultra low-friction iOS calorie + exercise logger.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhil1231/caligo-landing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhil1231/caligo-landing/issues"
+  },
+  "homepage": "https://github.com/nikhil1231/caligo-landing#readme"
 }
