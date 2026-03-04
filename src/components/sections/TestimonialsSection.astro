@@ -1,12 +1,12 @@
 ---
-import { testimonials } from '../../content/copy';
+import { testimonials, testimonialsSection } from '../../content/copy';
 import SectionShell from '../ui/SectionShell.astro';
 ---
 
 <SectionShell
-  eyebrow="Testimonials"
-  title="Early feedback from routine-focused testers"
-  lead="Placeholder quotes for launch. Replace with verified customer testimonials before production."
+  eyebrow={testimonialsSection.eyebrow}
+  title={testimonialsSection.title}
+  lead={testimonialsSection.lead}
 >
   <div class="grid gap-4 md:grid-cols-3 md:gap-6">
     {

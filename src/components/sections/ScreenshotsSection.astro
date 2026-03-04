@@ -1,13 +1,13 @@
 ---
-import { screenshotCards } from '../../content/copy';
+import { screenshotCards, screenshotsSection } from '../../content/copy';
 import DeviceFrame from '../ui/DeviceFrame.astro';
 import SectionShell from '../ui/SectionShell.astro';
 ---
 
 <SectionShell
-  eyebrow="Screenshots"
-  title="A calm interface for daily consistency"
-  lead="See the app in action across different screens."
+  eyebrow={screenshotsSection.eyebrow}
+  title={screenshotsSection.title}
+  lead={screenshotsSection.lead}
 >
   <div class="group relative mt-10">
     <button data-carousel-prev class="absolute left-2 md:-left-6 lg:-left-8 top-1/2 z-10 flex h-12 w-12 -translate-y-[calc(50%+1rem)] items-center justify-center rounded-full bg-white/90 backdrop-blur border border-slate-200 shadow-md text-slate-700 transition hover:bg-white hover:text-accent opacity-90 hover:opacity-100 active:scale-95" aria-label="Previous screenshot">

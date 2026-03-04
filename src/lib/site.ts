@@ -1,6 +1,6 @@
 export const SITE_NAME = 'Caligo Tracker';
 export const DEFAULT_SITE_URL = 'https://caligotracker.app';
-export const CONTACT_EMAIL = 'hello@caligotracker.com';
+export const CONTACT_EMAIL = 'hello@caligotracker.app';
 
 export const SITE_URL = (import.meta.env.PUBLIC_SITE_URL ?? DEFAULT_SITE_URL).replace(
   /\/+$/,

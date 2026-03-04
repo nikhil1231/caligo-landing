@@ -1,10 +1,10 @@
 ---
-import { faqItems } from '../../content/copy';
+import { faqItems, faqSection } from '../../content/copy';
 import FaqItem from '../ui/FaqItem.astro';
 import SectionShell from '../ui/SectionShell.astro';
 ---
 
-<SectionShell id="faq" eyebrow="FAQ" title="Common questions" lead="Short answers today, deeper docs as the app launches.">
+<SectionShell id="faq" eyebrow={faqSection.eyebrow} title={faqSection.title} lead={faqSection.lead}>
   <div class="grid gap-4 md:gap-5">
     {
       faqItems.map((item) => <FaqItem question={item.question} answer={item.answer} />)
