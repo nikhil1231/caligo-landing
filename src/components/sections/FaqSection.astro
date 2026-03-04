@@ -11,3 +11,21 @@ import SectionShell from '../ui/SectionShell.astro';
     }
   </div>
 </SectionShell>
+
+<script>
+  const faqContainer = document.querySelector('#faq');
+  if (faqContainer) {
+    const detailsElements = faqContainer.querySelectorAll('details');
+    detailsElements.forEach((details) => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          detailsElements.forEach((other) => {
+            if (other !== details) {
+              other.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  }
+</script>
