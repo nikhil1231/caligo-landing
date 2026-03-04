@@ -76,8 +76,8 @@ export const features = [
     icon: 'layout-dashboard'
   },
   {
-    title: 'Privacy-first',
-    body: 'Stored on-device by default. Calibration runs locally too',
+    title: 'On-device by default',
+    body: 'Everything is stored on-device by default. We collect limited anonymized analytics to improve the app (which you can opt out of). We will never sell your data.',
     icon: 'lock'
   }
 ] as const;
@@ -205,7 +205,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Is my data private?',
     answer:
-      'Your waitlist email is used only for early access updates. In the app, the default goal is simple: your data is yours, and any cloud/sync features should be optional and clearly explained before they ship.'
+      'Your waitlist email is used only for early access updates. Data lives on the device, and we only collect anonymized analytics to improve the app (which you can opt out of). We will never sell your data.'
   },
   {
     question: 'Is this medical or coaching advice?',
@@ -228,7 +228,6 @@ export const footerCopy = {
   socialLinks: [
     { label: 'X', href: 'https://x.com/caligotracker' },
     { label: 'Instagram', href: 'https://instagram.com/caligotracker' },
-    { label: 'TikTok', href: 'https://tiktok.com/@caligotracker' },
     { label: 'GitHub', href: 'https://github.com/nikhil1231/caligo-landing' }
   ],
   legalNotice: 'Caligo is not intended for medical diagnosis or treatment.'
