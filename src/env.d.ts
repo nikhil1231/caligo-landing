@@ -6,6 +6,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_ANALYTICS_PROVIDER?: 'plausible' | 'ga4';
   readonly PUBLIC_ANALYTICS_KEY?: string;
   readonly PUBLIC_SITE_URL?: string;
+  readonly PUBLIC_CONTACT_ENDPOINT?: string;
 }
 
 interface ImportMeta {

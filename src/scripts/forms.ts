@@ -83,6 +83,7 @@ export function initLeadForms() {
     const source = (form.dataset.source === 'contact' ? 'contact' : 'waitlist') as LeadSource;
     const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]');
     const messageInput = form.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
+    const topicSelect = form.querySelector<HTMLSelectElement>('select[name="topic"]');
     const honeypotInput = form.querySelector<HTMLInputElement>('input[name="company"]');
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const status = form.querySelector('[data-form-status]');
@@ -102,6 +103,7 @@ export function initLeadForms() {
       email,
       source,
       message: messageInput?.value.trim() || undefined,
+      topic: topicSelect?.value.trim() || undefined,
       honeypot: honeypotInput?.value ?? ''
     });
 
@@ -120,6 +122,8 @@ export function initLeadForms() {
 
     form.reset();
 
+    form.reset();
+
     if (source === 'waitlist') {
       const formContainer = document.getElementById('waitlist-form-container');
       const successContainer = document.getElementById('waitlist-success');
@@ -132,9 +136,22 @@ export function initLeadForms() {
         successContainer.classList.add('flex');
         return;
       }
-    }
 
-    setStatus(status, result.message);
-    showToast(result.message, 'success');
+      setStatus(status, result.message);
+      showToast(result.message, 'success');
+    } else if (source === 'contact') {
+      const formContainer = document.getElementById('contact-form-container');
+      const successContainer = document.getElementById('contact-success');
+
+      if (formContainer && successContainer) {
+        formContainer.classList.add('hidden');
+        successContainer.classList.remove('hidden');
+        successContainer.classList.add('flex');
+        return;
+      }
+
+      setStatus(status, result.message);
+      showToast(result.message, 'success');
+    }
   });
 }

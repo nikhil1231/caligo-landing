@@ -8,6 +8,7 @@ export interface LeadPayload {
   email: string;
   source: LeadSource;
   message?: string;
+  topic?: string;
   honeypot?: string;
 }
 
@@ -70,14 +71,17 @@ function storeLocalLead(payload: LeadPayload) {
   existing.push({
     email: payload.email,
     source: payload.source,
-    message: payload.message
+    message: payload.message,
+    topic: payload.topic
   });
 
   window.localStorage.setItem(LEAD_STORAGE_KEY, JSON.stringify(existing));
 }
 
 async function postRemoteLead(payload: LeadPayload) {
-  const endpoint = import.meta.env.PUBLIC_WAITLIST_ENDPOINT;
+  const endpoint = payload.source === 'contact'
+    ? import.meta.env.PUBLIC_CONTACT_ENDPOINT
+    : import.meta.env.PUBLIC_WAITLIST_ENDPOINT;
   if (!endpoint) {
     return null;
   }
@@ -95,6 +99,7 @@ async function postRemoteLead(payload: LeadPayload) {
         email: payload.email,
         source: payload.source,
         message: payload.message,
+        topic: payload.topic,
         submittedAt: new Date().toISOString()
       }),
       signal: controller.signal

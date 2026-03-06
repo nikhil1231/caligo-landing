@@ -1,3 +1,4 @@
+import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 import { onRequest } from "firebase-functions/v2/https";
 import { defineSecret } from "firebase-functions/params";
 import * as admin from "firebase-admin";
@@ -14,6 +15,12 @@ const appStoreIssuerId = defineSecret("APP_STORE_ISSUER_ID");
 const appStoreKeyId = defineSecret("APP_STORE_KEY_ID");
 const appStorePrivateKey = defineSecret("APP_STORE_PRIVATE_KEY");
 const appStoreBetaGroupId = defineSecret("APP_STORE_BETA_GROUP_ID");
+
+// AWS Secrets
+const awsAccessKeyId = defineSecret("AWS_ACCESS_KEY_ID");
+const awsSecretAccessKey = defineSecret("AWS_SECRET_ACCESS_KEY");
+const awsRegion = defineSecret("AWS_REGION");
+const contactEmailAddress = defineSecret("CONTACT_EMAIL_ADDRESS");
 
 const corsHandler = cors({ origin: true });
 
@@ -121,6 +128,81 @@ export const submitLead = onRequest(
         res.status(200).json({ message: "Successfully added to waitlist and TestFlight!" });
       } catch (error) {
         console.error("Error processing lead:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+      }
+    });
+  }
+);
+
+export const submitContact = onRequest(
+  { secrets: [awsAccessKeyId, awsSecretAccessKey, awsRegion, contactEmailAddress] },
+  (req, res) => {
+    corsHandler(req, res, async () => {
+      try {
+        if (req.method !== "POST") {
+          res.status(405).send("Method Not Allowed");
+          return;
+        }
+
+        const { email, topic, message, source } = req.body;
+
+        if (!email || !validator.isEmail(email)) {
+          res.status(400).json({ error: "Invalid email address" });
+          return;
+        }
+
+        const normalizedEmail = validator.normalizeEmail(email) as string || email;
+        const safeTopic = topic ? validator.escape(topic) : "General Inquiry";
+        const safeMessage = message ? validator.escape(message) : "";
+
+        // Add to our internal Firestore database as history
+        const contactRef = db.collection("contactMessages");
+        await contactRef.add({
+          email: normalizedEmail,
+          topic: safeTopic,
+          message: safeMessage,
+          source: source || "contact",
+          createdAt: FieldValue.serverTimestamp(),
+        });
+
+        // Initialize SES Client
+        const sesClient = new SESClient({
+          region: awsRegion.value(),
+          credentials: {
+            accessKeyId: awsAccessKeyId.value(),
+            secretAccessKey: awsSecretAccessKey.value(),
+          },
+        });
+
+        // Construct email
+        const destinationEmail = contactEmailAddress.value();
+
+        const params = {
+          Source: destinationEmail,
+          Destination: {
+            ToAddresses: [destinationEmail],
+          },
+          ReplyToAddresses: [normalizedEmail],
+          Message: {
+            Subject: {
+              Data: `[Caligo Contact] ${safeTopic} from ${normalizedEmail}`,
+              Charset: "UTF-8",
+            },
+            Body: {
+              Text: {
+                Data: `New message from ${normalizedEmail}\n\nTopic: ${safeTopic}\n\nMessage:\n${safeMessage}`,
+                Charset: "UTF-8",
+              },
+            },
+          },
+        };
+
+        const command = new SendEmailCommand(params);
+        await sesClient.send(command);
+
+        res.status(200).json({ message: "Message sent successfully!" });
+      } catch (error) {
+        console.error("Error processing contact form:", error);
         res.status(500).json({ error: "Internal Server Error" });
       }
     });

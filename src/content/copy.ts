@@ -224,10 +224,39 @@ export const waitlistCopy = {
   privacyNote: 'By submitting, you agree to our '
 } as const;
 
+export const contactCopy = {
+  metaDescription: 'Contact Caligo.',
+  hero: {
+    eyebrow: 'Contact',
+    title: 'Let us know what you need',
+    leadPrefix: '',
+    leadSuffix: ''
+  },
+  form: {
+    title: 'Send a message',
+    lead: 'I read every message, and I\'ll get back to you as soon as possible.',
+    emailLabel: 'Email',
+    emailPlaceholder: 'you@example.com',
+    topicLabel: 'What’s this about?',
+    topicOptions: [
+      { value: 'support', label: 'Support' },
+      { value: 'bug', label: 'Bug report' },
+      { value: 'feature_request', label: 'Feature request' },
+      { value: 'testflight', label: 'TestFlight' },
+      { value: 'partnership', label: 'Partnership' },
+      { value: 'other', label: 'Other' }
+    ],
+    messageLabel: 'Message',
+    messagePlaceholder: 'Tell us what you are looking for.',
+    cta: 'Send message'
+  }
+} as const;
+
 export const footerCopy = {
   socialLinks: [
     { label: 'X', href: 'https://x.com/caligotracker' },
     { label: 'Instagram', href: 'https://instagram.com/caligotracker' },
+    { label: 'TikTok', href: 'https://tiktok.com/@caligotracker' },
     { label: 'GitHub', href: 'https://github.com/nikhil1231/caligo-landing' }
   ],
   legalNotice: 'Caligo is not intended for medical diagnosis or treatment.'
