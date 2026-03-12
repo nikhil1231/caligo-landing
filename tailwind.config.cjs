@@ -17,7 +17,7 @@ module.exports = {
         card: '1.25rem'
       },
       fontFamily: {
-        sans: ['Manrope', 'system-ui', 'sans-serif']
+        sans: ['Nunito', 'system-ui', 'sans-serif']
       }
     }
   },

@@ -17,10 +17,10 @@ export const navItems = [
 
 export const heroCopy = {
   eyebrow: 'Ultra low-friction calorie tracking',
-  headline: 'Track in seconds. Calibrate over time.',
+  headline: 'Caligo is the calorie tracker you’ll actually stick to.',
   subtext:
     'Caligo keeps calorie logging frictionless and adjusts targets based on your weight trends, so you can focus on habits instead of perfect entries.',
-  qualifier: 'Built for people who hate traditional calorie trackers.'
+  qualifier: 'Built for people who are sick of calorie trackers.'
 } as const;
 
 export const howItWorks = {
