@@ -99,10 +99,45 @@ gtag('config', '${analytics.key}');`}
   <body>
     <slot />
     <script>
-      import { createIcons, icons } from 'lucide';
+      import { createIcons } from 'lucide';
+      import {
+        ArrowDownUp,
+        ArrowRight,
+        CheckCircle2,
+        ChevronDown,
+        Hand,
+        Heart,
+        Info,
+        LayoutDashboard,
+        LineChart,
+        Lock,
+        Scale,
+        Shield,
+        ShieldAlert,
+        SlidersHorizontal,
+        TrendingUp,
+        Zap
+      } from 'lucide';
 
       createIcons({
-        icons,
+        icons: {
+          ArrowDownUp,
+          ArrowRight,
+          CheckCircle2,
+          ChevronDown,
+          Hand,
+          Heart,
+          Info,
+          LayoutDashboard,
+          LineChart,
+          Lock,
+          Scale,
+          Shield,
+          ShieldAlert,
+          SlidersHorizontal,
+          TrendingUp,
+          Zap
+        },
         attrs: {
           'stroke-width': '1.7'
         }
