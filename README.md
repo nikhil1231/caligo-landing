@@ -23,7 +23,7 @@ Static marketing site for **Caligo Tracker**, an ultra low-friction iOS calorie 
   - client-side rate limiting
   - configurable endpoint handoff
   - localStorage demo fallback
-- Optional analytics integration (off by default).
+- Optional analytics integration (off by default), including Firebase Analytics support.
 
 ## Local Development
 
@@ -48,9 +48,32 @@ Use these optional public env vars in `.env`:
 ```bash
 PUBLIC_SITE_URL=https://caligotracker.app
 PUBLIC_WAITLIST_ENDPOINT=
+PUBLIC_CONTACT_ENDPOINT=
 PUBLIC_ANALYTICS_PROVIDER=
 PUBLIC_ANALYTICS_KEY=
+PUBLIC_FIREBASE_API_KEY=
+PUBLIC_FIREBASE_AUTH_DOMAIN=
+PUBLIC_FIREBASE_PROJECT_ID=
+PUBLIC_FIREBASE_STORAGE_BUCKET=
+PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+PUBLIC_FIREBASE_APP_ID=
+PUBLIC_FIREBASE_MEASUREMENT_ID=
+PUBLIC_CLARITY_PROJECT_ID=
 ```
+
+### Analytics Providers
+
+- `PUBLIC_ANALYTICS_PROVIDER=plausible`
+  - Requires: `PUBLIC_ANALYTICS_KEY` (domain).
+- `PUBLIC_ANALYTICS_PROVIDER=ga4`
+  - Requires: `PUBLIC_ANALYTICS_KEY` (GA4 measurement ID).
+- `PUBLIC_ANALYTICS_PROVIDER=firebase`
+  - Requires: `PUBLIC_FIREBASE_API_KEY`, `PUBLIC_FIREBASE_PROJECT_ID`, `PUBLIC_FIREBASE_APP_ID`, `PUBLIC_FIREBASE_MEASUREMENT_ID`.
+  - Optional: `PUBLIC_FIREBASE_AUTH_DOMAIN`, `PUBLIC_FIREBASE_STORAGE_BUCKET`, `PUBLIC_FIREBASE_MESSAGING_SENDER_ID`.
+
+`PUBLIC_CLARITY_PROJECT_ID` is optional and enables Microsoft Clarity (session replay / heatmaps).
+
+When analytics is enabled, the site tracks anonymous landing-page basics: page views with UTM/referrer attribution, CTA clicks, outbound/social/app-link clicks, waitlist/contact form funnel events (start/attempt/success/fail/drop-off), scroll depth milestones, key section visibility (`how-it-works`), visitor state (new vs returning), device/OS hints, and page performance/load-failure events.
 
 ### Waitlist / Contact Stub Behavior
 

@@ -17,7 +17,14 @@ import Button from '../ui/Button.astro';
       <p class="mx-auto mt-8 text-sm font-medium text-slate-400 md:mt-10">{heroCopy.qualifier}</p>
 
       <div class="mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-5">
-        <Button as="a" href={homeSectionLink('#waitlist')}>
+        <Button
+          as="a"
+          href={homeSectionLink('#waitlist')}
+          data-analytics-event="cta_click"
+          data-analytics-target="waitlist"
+          data-analytics-label="hero_get_early_access"
+          data-analytics-location="hero"
+        >
           Get Early Access
           <i data-lucide="arrow-right" class="ml-2"></i>
         </Button>

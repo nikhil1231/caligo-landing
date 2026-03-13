@@ -7,11 +7,12 @@ import Button from '../ui/Button.astro';
 <header class="sticky top-0 z-50 border-b border-white/60 bg-[#f8fcff]/90 backdrop-blur">
   <div class="section-grid flex items-center justify-between gap-4 py-3">
     <a href={withBasePath('/')} aria-label="Caligo Tracker home" class="inline-flex items-center gap-3">
-      <span
-        class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-sky-300 text-lg font-bold text-white"
-      >
-        C
-      </span>
+      <img
+        src={withBasePath('/icon_full.png')}
+        alt=""
+        draggable="false"
+        class="h-10 w-10"
+      />
     </a>
 
     <nav class="hidden items-center gap-7 text-sm font-medium text-muted md:flex" aria-label="Primary">
@@ -27,7 +28,15 @@ import Button from '../ui/Button.astro';
 
     <div class="flex items-center gap-2 md:gap-3">
       <div id="header-cta-wrapper" class="opacity-0 pointer-events-none transition-opacity duration-300">
-        <Button as="a" href={homeSectionLink('#waitlist')} size="sm">
+        <Button
+          as="a"
+          href={homeSectionLink('#waitlist')}
+          size="sm"
+          data-analytics-event="cta_click"
+          data-analytics-target="waitlist"
+          data-analytics-label="header_get_early_access"
+          data-analytics-location="header"
+        >
           Get Early Access
         </Button>
       </div>

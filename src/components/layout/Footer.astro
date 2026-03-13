@@ -7,7 +7,14 @@ import { CONTACT_EMAIL, withBasePath } from '../../lib/site';
   <div class="section-grid space-y-8">
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <p class="text-sm text-muted">{footerCopy.legalNotice}</p>
-      <a class="text-sm font-semibold text-accent hover:text-sky-500" href={`mailto:${CONTACT_EMAIL}`}>
+      <a
+        class="text-sm font-semibold text-accent hover:text-sky-500"
+        href={`mailto:${CONTACT_EMAIL}`}
+        data-analytics-event="cta_click"
+        data-analytics-target="contact_email"
+        data-analytics-label="footer_email"
+        data-analytics-location="footer"
+      >
         {CONTACT_EMAIL}
       </a>
     </div>
@@ -21,7 +28,14 @@ import { CONTACT_EMAIL, withBasePath } from '../../lib/site';
       <div class="flex items-center gap-4">
         {
           footerCopy.socialLinks.map((link) => (
-            <a href={link.href} rel="noopener noreferrer" target="_blank" class="hover:text-ink">
+            <a
+              href={link.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              class="hover:text-ink"
+              data-analytics-label={link.label}
+              data-analytics-location="footer"
+            >
               {link.label}
             </a>
           ))

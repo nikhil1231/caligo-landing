@@ -23,7 +23,14 @@ import SectionShell from '../ui/SectionShell.astro';
     </ul>
     <p class="text-sm leading-relaxed text-muted md:text-base">
       Support resources:
-      <a href={trustNotes.resourceHref} target="_blank" rel="noopener noreferrer" class="font-semibold text-accent hover:text-sky-500">
+      <a
+        href={trustNotes.resourceHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-semibold text-accent hover:text-sky-500"
+        data-analytics-label="trust_support_resource"
+        data-analytics-location="trust"
+      >
         {trustNotes.resourceLabel}
       </a>
     </p>

@@ -15,7 +15,14 @@ import { CONTACT_EMAIL } from '../lib/site';
         <h1 class="text-3xl font-extrabold md:text-4xl">{contactCopy.hero.title}</h1>
         <p class="mt-4 text-sm text-muted md:text-base">
           {contactCopy.hero.leadPrefix}
-          <a class="font-semibold text-accent hover:text-sky-500" href={`mailto:${CONTACT_EMAIL}`}>
+          <a
+            class="font-semibold text-accent hover:text-sky-500"
+            href={`mailto:${CONTACT_EMAIL}`}
+            data-analytics-event="cta_click"
+            data-analytics-target="contact_email"
+            data-analytics-label="contact_page_email"
+            data-analytics-location="contact"
+          >
             {CONTACT_EMAIL}
           </a>
           {contactCopy.hero.leadSuffix}

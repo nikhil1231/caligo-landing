@@ -6,7 +6,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 const description =
   'Privacy Policy for Caligo Tracker. Learn what we collect, why we collect it, and how we protect your data.';
 
-const updatedAt = 'February 26, 2026';
+const updatedAt = 'March 13, 2026';
 ---
 
 <MainLayout title="Privacy Policy" description={description} path="/privacy">
@@ -28,7 +28,7 @@ const updatedAt = 'February 26, 2026';
         <h2 class="text-xl font-bold">What we collect</h2>
         <ul class="list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted md:text-base">
           <li>Email address if you join the waitlist or contact us.</li>
-          <li>Optional usage analytics only if analytics is enabled in the future.</li>
+          <li>Optional anonymized usage analytics if analytics is enabled.</li>
           <li>Optional weight, calorie, and exercise logs stored locally now or in a future cloud sync option.</li>
         </ul>
       </section>
@@ -53,8 +53,8 @@ const updatedAt = 'February 26, 2026';
       <section class="space-y-3">
         <h2 class="text-xl font-bold">Third parties</h2>
         <p class="text-sm leading-relaxed text-muted md:text-base">
-          We do not share personal data with third parties today. If backend features are enabled later (for example,
-          Firebase), this policy will be updated before those features launch.
+          If analytics or backend services are enabled, providers like Firebase or Clarity may process anonymized usage
+          events for hosting, form delivery, and product diagnostics.
         </p>
       </section>
 
