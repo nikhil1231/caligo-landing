@@ -9,6 +9,13 @@ export interface FaqItem {
   answer: string;
 }
 
+export interface LegalSection {
+  title: string;
+  type: 'text' | 'list' | 'html';
+  content?: string;
+  items?: string[];
+}
+
 export const navItems = [
   { label: 'Features', href: '#features' },
   { label: 'How it works', href: '#how-it-works' },
@@ -259,5 +266,140 @@ export const footerCopy = {
     { label: 'TikTok', href: 'https://tiktok.com/@caligotracker' },
     { label: 'GitHub', href: 'https://github.com/nikhil1231/caligo-landing' }
   ],
-  legalNotice: 'Caligo is not intended for medical diagnosis or treatment.'
+  legalNotice: 'Caligo is not intended for medical diagnosis or treatment.',
+  disclosure: 'We use analytics tools, including Microsoft Clarity, to understand how people use this site and improve the experience.'
+} as const;
+
+export const privacyCopy = {
+  title: 'Privacy Policy',
+  description:
+    'Privacy Policy for Caligo. Learn what we collect, why we collect it, and how we protect your data.',
+  updatedAt: 'March 14, 2026',
+  intro:
+    'This Privacy Policy explains how Caligo collects, uses, and protects information. This document may change as the app evolves.',
+  sections: [
+    {
+      title: 'What we collect',
+      type: 'list',
+      items: [
+        'We may collect your email address if you join the beta/waitlist or contact us.',
+        'We may also collect limited usage data from the website or app, such as page views, clicks, device/browser information, and pseudonymous analytics identifiers, if analytics tools are enabled.',
+        'At launch, calorie, weight, and exercise logs are stored locally on your device unless otherwise stated.'
+      ]
+    },
+    {
+      title: 'How we use data',
+      type: 'list',
+      items: [
+        'To respond to beta/waitlist and contact requests.',
+        'To improve app quality and usability.',
+        'We will NEVER sell your data.'
+      ]
+    },
+    {
+      title: 'Data retention',
+      type: 'text',
+      content:
+        'We keep your contact information only as long as needed for the stated purpose, typically until the product launch or until you request deletion.'
+    },
+    {
+      title: 'Third parties',
+      type: 'text',
+      content:
+        'We may use third-party service providers such as Google Firebase and Microsoft Clarity for analytics, diagnostics, and hosting-related functions. These providers may process pseudonymous usage data according to their own privacy terms.'
+    },
+    {
+      title: 'Cookies and analytics',
+      type: 'text',
+      content:
+        'We use analytics tools, including Microsoft Clarity and Google Firebase, to understand how people use this site and improve the experience. These tools use cookies or similar technologies to collect pseudonymous data about your interaction with our services.'
+    },
+    {
+      title: 'Your rights and choices',
+      type: 'html',
+      content:
+        'You can request access, correction, or deletion of your personal information (such as your email address) at any time by contacting <a class="font-semibold text-accent hover:text-sky-500" href="mailto:hello@caligotracker.app">hello@caligotracker.app</a>.'
+    },
+    {
+      title: 'Age requirements',
+      type: 'text',
+      content:
+        'Caligo is not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13.'
+    },
+    {
+      title: 'Medical disclaimer',
+      type: 'text',
+      content:
+        'Caligo is not for medical use and is not a substitute for professional healthcare advice, diagnosis, or treatment.'
+    },
+    {
+      title: 'Data operator',
+      type: 'text',
+      content: 'Caligo is operated by Nikhil Kunde based in The United Kingdom.'
+    },
+    {
+      title: 'Policy changes',
+      type: 'text',
+      content:
+        'We may revise this policy from time to time. Material updates will be reflected by the "Last updated" date above.'
+    }
+  ] as LegalSection[]
+} as const;
+
+export const termsCopy = {
+  title: 'Terms of Service',
+  description: 'Terms of Service for Caligo.',
+  updatedAt: 'March 14, 2026',
+  intro:
+    'These Terms govern your use of Caligo. By using the site or app, you agree to these Terms.',
+  sections: [
+    {
+      title: 'Informational use only',
+      type: 'text',
+      content:
+        'Caligo is provided for informational and self-tracking purposes only. It is not medical advice and should not be used for diagnosis or treatment.'
+    },
+    {
+      title: 'User responsibility',
+      type: 'text',
+      content:
+        'You are responsible for how you use the app, the data you enter, and decisions made from that information.'
+    },
+    {
+      title: 'Acceptable use',
+      type: 'text',
+      content:
+        'You agree not to misuse the service, disrupt access, attempt unauthorized access, or use the product for unlawful purposes.'
+    },
+    {
+      title: 'Liability limitations',
+      type: 'text',
+      content:
+        'To the fullest extent permitted by law, Caligo is provided "as is" without warranties. We are not liable for indirect or consequential damages related to use of the service.'
+    },
+    {
+      title: 'Termination',
+      type: 'text',
+      content:
+        'We may suspend or terminate access if these Terms are violated or if the service is discontinued.'
+    },
+    {
+      title: 'Contact',
+      type: 'html',
+      content:
+        'Questions about these Terms can be sent to <a class="font-semibold text-accent hover:text-sky-500" href="mailto:hello@caligotracker.app">hello@caligotracker.app</a>.'
+    },
+    {
+      title: 'Governing Law',
+      type: 'text',
+      content:
+        'These Terms are governed by and construed in accordance with the laws of The United Kingdom, without regard to its conflict of law principles.'
+    },
+    {
+      title: 'Changes to terms',
+      type: 'text',
+      content:
+        'These Terms may change over time. Continued use after updates means you accept the revised Terms.'
+    }
+  ] as LegalSection[]
 } as const;
