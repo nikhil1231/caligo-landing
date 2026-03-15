@@ -24,6 +24,17 @@ import { CONTACT_EMAIL, withBasePath } from '../../lib/site';
         <a href={withBasePath('/privacy')} class="hover:text-ink">Privacy</a>
         <a href={withBasePath('/terms')} class="hover:text-ink">Terms</a>
         <a href={withBasePath('/contact')} class="hover:text-ink">Contact</a>
+        <a
+          href="#cookie-settings"
+          class="hover:text-ink"
+          data-cookie-settings-trigger
+          data-analytics-event="cta_click"
+          data-analytics-target="cookie_settings"
+          data-analytics-label="footer_cookie_settings"
+          data-analytics-location="footer"
+        >
+          Cookie settings
+        </a>
       </div>
       <div class="flex items-center gap-4">
         {
