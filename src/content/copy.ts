@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL } from '../lib/site';
+
 export interface Testimonial {
   quote: string;
   author: string;
@@ -57,7 +59,7 @@ export const whyItWorks = {
   eyebrow: 'Why it works',
   title: 'Calories aren’t as exact as they look.',
   lead: 'Food labels are estimates, and real-world results vary by person. Caligo uses your weight trend to calibrate targets to what actually works for you.',
-  kicker: 'Caligo adapts to you—not the other way around.'
+  kicker: 'Caligo adapts to you, not the other way around.'
 } as const;
 
 export const featuresSection = {
@@ -114,7 +116,7 @@ export const trustNotes = {
 export const screenshotsSection = {
   eyebrow: 'Screenshots',
   title: 'A calm interface for daily consistency',
-  lead: 'Caligo is designed to stay calm and neutral — here’s what that looks like in the app.'
+  lead: 'Caligo is designed to stay minimal and neutral.'
 } as const;
 
 export const screenshotCards = [
@@ -175,7 +177,7 @@ export const testimonials: Testimonial[] = [
 export const faqSection = {
   eyebrow: 'FAQ',
   title: 'Common questions',
-  lead: 'Short answers today, deeper docs as the app launches.'
+  lead: `If you have any other questions, feel free to reach out to us at <a class="font-semibold text-accent hover:text-sky-500" href="mailto:${CONTACT_EMAIL}" data-analytics-event="cta_click" data-analytics-target="contact_email" data-analytics-label="faq_email" data-analytics-location="faq">${CONTACT_EMAIL}</a>.`
 } as const;
 
 export const faqItems: FaqItem[] = [
@@ -202,7 +204,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Does it track macros?',
     answer:
-      'Not as the main experience. Caligo tracks calories + activity + weight trend first.'
+      'Not currently. We might add it in a future update if there is demand for it!'
   },
   {
     question: 'Does it support bulking?',
@@ -212,7 +214,7 @@ export const faqItems: FaqItem[] = [
   {
     question: 'Is my data private?',
     answer:
-      'Your waitlist email is used only for early access updates. Data lives on the device, and we only collect anonymized analytics to improve the app (which you can opt out of). We will never sell your data.'
+      'Data lives on the device, and we only collect anonymized analytics to improve the app (which you can opt out of). If you sign up for the beta, your email is used only for early access updates. We will never sell your data.'
   },
   {
     question: 'Is this medical or coaching advice?',
@@ -317,8 +319,7 @@ export const privacyCopy = {
     {
       title: 'Your rights and choices',
       type: 'html',
-      content:
-        'You can request access, correction, or deletion of your personal information (such as your email address) at any time by contacting <a class="font-semibold text-accent hover:text-sky-500" href="mailto:hello@caligotracker.app">hello@caligotracker.app</a>.'
+      content: `You can request access, correction, or deletion of your personal information (such as your email address) at any time by contacting <a class="font-semibold text-accent hover:text-sky-500" href="mailto:${CONTACT_EMAIL}" data-analytics-event="cta_click" data-analytics-target="contact_email" data-analytics-label="privacy_email" data-analytics-location="privacy">${CONTACT_EMAIL}</a>.`
     },
     {
       title: 'Age requirements',
@@ -386,8 +387,7 @@ export const termsCopy = {
     {
       title: 'Contact',
       type: 'html',
-      content:
-        'Questions about these Terms can be sent to <a class="font-semibold text-accent hover:text-sky-500" href="mailto:hello@caligotracker.app">hello@caligotracker.app</a>.'
+      content: `Questions about these Terms can be sent to <a class="font-semibold text-accent hover:text-sky-500" href="mailto:${CONTACT_EMAIL}" data-analytics-event="cta_click" data-analytics-target="contact_email" data-analytics-label="terms_email" data-analytics-location="terms">${CONTACT_EMAIL}</a>.`
     },
     {
       title: 'Governing Law',

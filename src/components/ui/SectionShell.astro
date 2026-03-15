@@ -17,7 +17,7 @@ const { id, eyebrow, title, lead, class: className } = Astro.props as Props;
     <div class="mb-8 max-w-3xl md:mb-10">
       {eyebrow && <p class="eyebrow mb-3">{eyebrow}</p>}
       <h2 class="text-2xl font-extrabold leading-tight md:text-4xl">{title}</h2>
-      {lead && <p class="muted mt-4 max-w-2xl">{lead}</p>}
+      {lead && <p class="muted mt-4 max-w-2xl" set:html={lead} />}
     </div>
     <slot />
   </div>
