@@ -14,3 +14,5 @@ firebase-debug.*.log
 
 # Functions compiled code
 functions/lib/
+
+public/local

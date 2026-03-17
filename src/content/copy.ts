@@ -68,6 +68,19 @@ export const featuresSection = {
   lead: 'Caligo keeps the interface light while adapting your targets from real trend behavior.'
 } as const;
 
+export const whyIMadeCaligoSection = {
+  eyebrow: 'Why I made Caligo',
+  title: 'Built from my own frustration with tracking apps',
+  paragraphs: [
+    'I\'ve started countless diets over the years, and I was just fed up with having to use calorie tracking apps.',
+    'I felt myself obsessing over every calorie and macro. I was bombarded with ads and premium upsells. My own data was hidden behind a paywall.',
+    'My first successful long-term diet was when I didn\'t even use an app: I just kept a rough running total of calories in my head. That was the inspiration behind Caligo.',
+    'I built it to be as frictionless as possible to use. I wanted to be able to track with a single gesture.'
+  ],
+  imageSrc: '/self_tracking.png',
+  imageAlt: 'Me tracking my calories'
+} as const;
+
 export const features = [
   {
     title: 'Low-friction logging',
@@ -319,7 +332,8 @@ export const privacyCopy = {
     {
       title: 'Your rights and choices',
       type: 'html',
-      content: `You can request access, correction, or deletion of your personal information (such as your email address) at any time by contacting <a class="font-semibold text-accent hover:text-sky-500" href="mailto:${CONTACT_EMAIL}" data-analytics-event="cta_click" data-analytics-target="contact_email" data-analytics-label="privacy_email" data-analytics-location="privacy">${CONTACT_EMAIL}</a>.`
+      content:
+        'You can request access, correction, or deletion of your personal information (such as your email address) at any time by contacting <a class="font-semibold text-accent hover:text-sky-500" href="mailto:hello@caligotracker.app">hello@caligotracker.app</a>.'
     },
     {
       title: 'Age requirements',
@@ -387,7 +401,8 @@ export const termsCopy = {
     {
       title: 'Contact',
       type: 'html',
-      content: `Questions about these Terms can be sent to <a class="font-semibold text-accent hover:text-sky-500" href="mailto:${CONTACT_EMAIL}" data-analytics-event="cta_click" data-analytics-target="contact_email" data-analytics-label="terms_email" data-analytics-location="terms">${CONTACT_EMAIL}</a>.`
+      content:
+        'Questions about these Terms can be sent to <a class="font-semibold text-accent hover:text-sky-500" href="mailto:hello@caligotracker.app">hello@caligotracker.app</a>.'
     },
     {
       title: 'Governing Law',
