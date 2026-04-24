@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
+    "optimize:media": "node scripts/optimize-media.mjs",
     "lint": "eslint . --ext .js,.ts,.astro",
     "format": "prettier --write ."
   },

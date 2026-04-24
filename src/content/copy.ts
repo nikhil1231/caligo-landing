@@ -134,29 +134,28 @@ export const screenshotsSection = {
 
 export const screenshotCards = [
   {
-    src: '/screenshots/screen-1.svg',
-    alt: 'Placeholder Caligo home swipe logger',
-    caption: 'Swipe logger'
+    alt: 'Caligo home swipe logger',
+    caption: 'Logging food'
   },
   {
-    src: '/screenshots/screen-2.svg',
-    alt: 'Placeholder Caligo dial weight entry screen',
-    caption: 'Weight dial'
+    alt: 'Caligo dial weight entry screen',
+    caption: 'Logging exercise'
   },
   {
-    src: '/screenshots/screen-3.svg',
-    alt: 'Placeholder Caligo trend calibration graph',
-    caption: 'Trend graph'
+    alt: 'Caligo trend calibration graph',
+    caption: 'Dashboard'
   },
   {
-    src: '/screenshots/screen-4.svg',
-    alt: 'Placeholder Caligo daily summary sheet',
-    caption: 'Daily summary'
+    alt: 'Caligo daily summary sheet',
+    caption: 'Weight'
   },
   {
-    src: '/screenshots/screen-5.svg',
-    alt: 'Placeholder Caligo quick add panel',
-    caption: 'Quick add'
+    alt: 'Caligo quick add panel',
+    caption: 'Settings'
+  },
+  {
+    alt: 'Caligo quick add panel',
+    caption: 'Entries'
   }
 ] as const;
 

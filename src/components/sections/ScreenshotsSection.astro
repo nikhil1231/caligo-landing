@@ -1,7 +1,44 @@
 ---
-import { screenshotCards, screenshotsSection } from '../../content/copy';
+import { readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { screenshotCards as screenshotCopyCards, screenshotsSection } from '../../content/copy';
 import DeviceFrame from '../ui/DeviceFrame.astro';
 import SectionShell from '../ui/SectionShell.astro';
+
+type ScreenshotCard = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+const screenshotsDir = resolve(process.cwd(), 'public', 'screenshots');
+
+let files: string[] = [];
+
+try {
+  files = readdirSync(screenshotsDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name);
+} catch {
+  files = [];
+}
+
+const screenshotCards: ScreenshotCard[] = files
+  .filter((name) => /^screen_(\d+)\.webp$/i.test(name))
+  .sort((a, b) => {
+    const aNumber = Number((a.match(/^screen_(\d+)\.webp$/i) ?? [])[1] ?? 0);
+    const bNumber = Number((b.match(/^screen_(\d+)\.webp$/i) ?? [])[1] ?? 0);
+    return aNumber - bNumber;
+  })
+  .map((name, index) => {
+    const copyItem = screenshotCopyCards[index];
+
+    return {
+      src: `/screenshots/${name}`,
+      alt: copyItem?.alt ?? 'Caligo app screenshot',
+      caption: copyItem?.caption ?? 'Caligo app'
+    };
+  });
 ---
 
 <SectionShell
@@ -100,7 +137,7 @@ import SectionShell from '../ui/SectionShell.astro';
 
       const startAutoScroll = () => {
         if (interval) clearInterval(interval);
-        interval = setInterval(scrollNext, 3000);
+        interval = setInterval(scrollNext, 5000);
       };
 
       const stopAutoScroll = () => {

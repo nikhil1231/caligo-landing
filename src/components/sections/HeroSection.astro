@@ -1,7 +1,28 @@
 ---
+import { readdirSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { heroCopy } from '../../content/copy';
 import { homeSectionLink, withBasePath } from '../../lib/site';
 import Button from '../ui/Button.astro';
+
+const screenshotsDir = resolve(process.cwd(), 'public', 'screenshots');
+
+let screenshotFiles: string[] = [];
+
+try {
+  screenshotFiles = readdirSync(screenshotsDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name);
+} catch {
+  screenshotFiles = [];
+}
+
+const heroVideoSources = [
+  screenshotFiles.includes('screen_rec.webm') ? { src: '/screenshots/screen_rec.webm', type: 'video/webm' } : null,
+  screenshotFiles.includes('screen_rec.mp4') ? { src: '/screenshots/screen_rec.mp4', type: 'video/mp4' } : null
+].filter((source): source is { src: string; type: string } => source !== null);
+
+const heroVideoPoster = screenshotFiles.includes('screen_1.webp') ? '/screenshots/screen_1.webp' : undefined;
 ---
 
 <section class="relative overflow-hidden pb-14 pt-14 md:pb-20 md:pt-20">
@@ -9,26 +30,59 @@ import Button from '../ui/Button.astro';
   <div class="soft-blob -right-16 top-14 h-72 w-72 bg-sky-300/28"></div>
 
   <div class="section-grid">
-    <div class="mx-auto max-w-4xl text-center">
-      <p class="eyebrow mb-5">{heroCopy.eyebrow}</p>
-      <h1 class="text-balance text-4xl font-extrabold leading-tight md:text-6xl">{heroCopy.headline}</h1>
-      <p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-muted md:text-xl">{heroCopy.subtext}</p>
+    <div class="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.7fr)] lg:gap-14">
+      <div class="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
+        <p class="eyebrow mb-5">{heroCopy.eyebrow}</p>
+        <h1 class="text-balance text-4xl font-extrabold leading-tight md:text-6xl">{heroCopy.headline}</h1>
+        <p class="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-muted md:text-xl lg:mx-0">{heroCopy.subtext}</p>
 
-      <p class="mx-auto mt-8 text-sm font-medium text-slate-400 md:mt-10">{heroCopy.qualifier}</p>
+        <p class="mx-auto mt-8 text-sm font-medium text-slate-400 md:mt-10 lg:mx-0">{heroCopy.qualifier}</p>
 
-      <div class="mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-5">
-        <Button
-          as="a"
-          href={homeSectionLink('#waitlist')}
-          data-analytics-event="cta_click"
-          data-analytics-target="waitlist"
-          data-analytics-label="hero_get_early_access"
-          data-analytics-location="hero"
-        >
-          Get Early Access
-          <i data-lucide="arrow-right" class="ml-2"></i>
-        </Button>
+        <div class="mt-4 flex flex-wrap items-center justify-center gap-3 md:mt-5 lg:justify-start">
+          <Button
+            as="a"
+            href={homeSectionLink('#waitlist')}
+            data-analytics-event="cta_click"
+            data-analytics-target="waitlist"
+            data-analytics-label="hero_get_early_access"
+            data-analytics-location="hero"
+          >
+            Get Early Access
+            <i data-lucide="arrow-right" class="ml-2"></i>
+          </Button>
+        </div>
       </div>
+
+      {
+        heroVideoSources.length > 0 && (
+          <div class="relative mx-auto w-full max-w-[330px] lg:max-w-[350px]">
+            <div class="pointer-events-none absolute -inset-6 -z-10 rounded-[3rem] bg-gradient-to-br from-accent/25 via-sky-300/20 to-transparent blur-2xl"></div>
+
+            <div class="relative overflow-hidden rounded-[2.4rem] border-[10px] border-slate-900 bg-slate-900 p-2 shadow-[0_24px_60px_-22px_rgba(2,32,56,0.45)]">
+              <div class="relative aspect-[1170/2430] overflow-hidden rounded-[1.8rem]">
+                <video
+                  class="absolute bottom-0 left-0 h-auto w-full"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  poster={heroVideoPoster ? withBasePath(heroVideoPoster) : undefined}
+                  aria-label="Screen recording of the Caligo app"
+                >
+                  {
+                    heroVideoSources.map((source) => (
+                      <source src={withBasePath(source.src)} type={source.type} />
+                    ))
+                  }
+                  Your browser does not support embedded videos.
+                </video>
+              </div>
+              <div class="pointer-events-none absolute left-1/2 top-0 h-6 w-28 -translate-x-1/2 rounded-b-2xl bg-slate-900"></div>
+            </div>
+          </div>
+        )
+      }
     </div>
   </div>
 </section>
