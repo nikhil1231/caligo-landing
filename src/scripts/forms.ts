@@ -27,7 +27,7 @@ function showToast(text: string, kind: 'success' | 'error') {
     style:
       kind === 'success'
         ? {
-            background: 'linear-gradient(135deg, #03a9f4, #44c5ff)',
+            background: 'linear-gradient(135deg, #02cdd4, #01b8be)',
             color: '#ffffff'
           }
         : {
