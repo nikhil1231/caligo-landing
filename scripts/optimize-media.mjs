@@ -7,10 +7,11 @@ const mediaDir = path.join(screenshotsRoot, 'media');
 const sourceDir = path.join(mediaDir, 'source');
 const generatedDir = path.join(mediaDir, 'generated');
 
-const SCREEN_WIDTH = 720;
-const SCREEN_WEBP_QUALITY = 78;
-const VIDEO_CRF = 28;
-const VIDEO_WEBM_CRF = 34;
+const SCREEN_WIDTH = 640;
+const SCREEN_WEBP_QUALITY = 90;
+const VIDEO_CRF = 24;
+const VIDEO_WEBM_CRF = 30;
+const SMOOTH_SCALE_FILTER = `scale='min(${SCREEN_WIDTH},iw)':-2:flags=bicubic+accurate_rnd+full_chroma_int`;
 
 function run(command, args) {
   const result = spawnSync(command, args, { stdio: 'inherit', shell: false });
@@ -54,6 +55,10 @@ function sortByNumericSuffix(files, pattern) {
 
 function migrateLegacyMedia() {
   const legacyFiles = listFiles(screenshotsRoot);
+  const generatedFiles = listFiles(generatedDir);
+  const hasGeneratedScreens = generatedFiles.some((name) => /^screen_(\d+)\.webp$/i.test(name));
+  const hasGeneratedVideo =
+    generatedFiles.includes('screen_rec.webm') || generatedFiles.includes('screen_rec.mp4');
 
   legacyFiles
     .filter((name) => /^IMG_(\d+)\.PNG$/i.test(name))
@@ -74,7 +79,7 @@ function migrateLegacyMedia() {
   legacyFiles
     .filter((name) => /^screen_(\d+)\.webp$/i.test(name))
     .forEach((name) => {
-      if (moveFile(path.join(screenshotsRoot, name), path.join(generatedDir, name))) {
+      if (!hasGeneratedScreens && moveFile(path.join(screenshotsRoot, name), path.join(generatedDir, name))) {
         console.log(`Moved legacy generated screenshot ${name} -> media/generated`);
       }
     });
@@ -87,7 +92,7 @@ function migrateLegacyMedia() {
     console.log('Moved legacy source recording screen_rec_source.mp4 -> media/source');
   }
 
-  if (existsSync(legacyVideoPath)) {
+  if (!hasGeneratedVideo && existsSync(legacyVideoPath)) {
     const sourceHasVideo =
       existsSync(path.join(sourceDir, 'screen_rec_source.mp4')) ||
       existsSync(path.join(sourceDir, 'screen_rec.mp4'));
@@ -103,7 +108,7 @@ function migrateLegacyMedia() {
     }
   }
 
-  if (moveFile(legacyWebmPath, path.join(generatedDir, 'screen_rec.webm'))) {
+  if (!hasGeneratedVideo && moveFile(legacyWebmPath, path.join(generatedDir, 'screen_rec.webm'))) {
     console.log('Moved legacy recording screen_rec.webm -> media/generated');
   }
 }
@@ -118,9 +123,18 @@ function getSourceScreenshots(files) {
     return numbered;
   }
 
-  return sortByNumericSuffix(
+  const imgNumbered = sortByNumericSuffix(
     files.filter((name) => /^IMG_(\d+)\.PNG$/i.test(name)),
     /^IMG_(\d+)\.PNG$/i
+  );
+
+  if (imgNumbered.length > 0) {
+    return imgNumbered;
+  }
+
+  return sortByNumericSuffix(
+    files.filter((name) => /^(\d+)\.png$/i.test(name)),
+    /^(\d+)\.png$/i
   );
 }
 
@@ -153,7 +167,7 @@ function optimizeScreenshots() {
       '-i',
       sourcePath,
       '-vf',
-      `scale='min(${SCREEN_WIDTH},iw)':-2:flags=lanczos`,
+      SMOOTH_SCALE_FILTER,
       '-frames:v',
       '1',
       '-compression_level',
@@ -214,7 +228,7 @@ function optimizeVideo() {
     '-i',
     inputVideo,
     '-vf',
-    `fps=30,scale='min(${SCREEN_WIDTH},iw)':-2:flags=lanczos`,
+    `fps=30,${SMOOTH_SCALE_FILTER}`,
     '-an',
     '-c:v',
     'libx264',
@@ -238,7 +252,7 @@ function optimizeVideo() {
     '-i',
     inputVideo,
     '-vf',
-    `fps=30,scale='min(${SCREEN_WIDTH},iw)':-2:flags=lanczos`,
+    `fps=30,${SMOOTH_SCALE_FILTER}`,
     '-an',
     '-c:v',
     'libvpx-vp9',
@@ -254,6 +268,28 @@ function optimizeVideo() {
   console.log('Optimized screen recording -> screen_rec.mp4, screen_rec.webm');
 }
 
+function publishGeneratedMedia() {
+  const generatedFiles = listFiles(generatedDir);
+  const publishFiles = generatedFiles.filter(
+    (name) => /^screen_(\d+)\.webp$/i.test(name) || /^screen_rec\.(webm|mp4)$/i.test(name)
+  );
+  const existingPublishedFiles = listFiles(screenshotsRoot).filter(
+    (name) => /^screen_(\d+)\.webp$/i.test(name) || /^screen_rec\.(webm|mp4)$/i.test(name)
+  );
+
+  existingPublishedFiles
+    .filter((name) => !publishFiles.includes(name))
+    .forEach((name) => {
+      rmSync(path.join(screenshotsRoot, name), { force: true });
+      console.log(`Removed stale published file ${name}`);
+    });
+
+  publishFiles.forEach((name) => {
+    copyFileSync(path.join(generatedDir, name), path.join(screenshotsRoot, name));
+    console.log(`Published ${name} -> public/screenshots`);
+  });
+}
+
 function main() {
   mkdirSync(screenshotsRoot, { recursive: true });
   mkdirSync(sourceDir, { recursive: true });
@@ -261,6 +297,7 @@ function main() {
   migrateLegacyMedia();
   optimizeScreenshots();
   optimizeVideo();
+  publishGeneratedMedia();
   console.log('Media optimization complete.');
 }
 

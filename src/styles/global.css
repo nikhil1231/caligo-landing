@@ -65,6 +65,10 @@ a:hover {
     filter: blur(52px);
     pointer-events: none;
   }
+
+  .media-soften {
+    filter: blur(0.15px) saturate(0.985) contrast(0.99);
+  }
 }
 
 :focus-visible {
